@@ -42,10 +42,6 @@ const RevealOnScroll = ({ children, className = "", delay = 0, direction = "up" 
 
     let visibleClass = "opacity-100 translate-y-0 translate-x-0";
 
-    const whatsappNumber = "2349163460203";
-    const whatsappText = "Hi Nnenna, I just saw your portfolio. I’d like to discuss a project. Are you available?";
-    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
-
     return (
         <div
             ref={ref}
@@ -59,6 +55,9 @@ const RevealOnScroll = ({ children, className = "", delay = 0, direction = "up" 
 
 const App = () => {
     const [scrolled, setScrolled] = useState(false);
+    const whatsappNumber = "2349163460203";
+    const whatsappText = "Hi Nnenna, I just saw your portfolio. I'd like to discuss a project. Are you available?";
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
     // Handle scroll for navbar glass effect
     useEffect(() => {
