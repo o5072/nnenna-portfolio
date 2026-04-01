@@ -42,6 +42,10 @@ const RevealOnScroll = ({ children, className = "", delay = 0, direction = "up" 
 
     let visibleClass = "opacity-100 translate-y-0 translate-x-0";
 
+    const whatsappNumber = "2349163460203";
+    const whatsappText = "Hi Nnenna, I just saw your portfolio. I’d like to discuss a project. Are you available?";
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
     return (
         <div
             ref={ref}
@@ -87,7 +91,7 @@ const App = () => {
                             <a href="#about" className="hover:text-white transition-colors">About</a>
                             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
                         </div>
-                        <a href="#contact" className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-black bg-white rounded-full hover:bg-gray-200 transition-colors">
+                        <a href={whatsappLink} target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-black bg-white rounded-full hover:bg-gray-200 transition-colors">
                             Let's Talk
                         </a>
                         {/* Mobile Menu Button (Simplified for this build) */}
@@ -112,13 +116,13 @@ const App = () => {
                         </RevealOnScroll>
 
                         <RevealOnScroll delay={150}>
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 mb-8 leading-tight">
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 mb-8 leading-tight">
                                 Digital Architect & <br className="hidden md:block" /> Growth Strategist.
                             </h1>
                         </RevealOnScroll>
 
                         <RevealOnScroll delay={300}>
-                            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
                                 I am <span className="text-white font-semibold">Nnenna Emefo</span>. I build digital presence, drive growth through strategic marketing, and streamline operations with top-tier administrative and customer care.
                             </p>
                         </RevealOnScroll>
@@ -256,7 +260,7 @@ const App = () => {
                                             Whether it's setting up your first professional profile, scaling a massive ad campaign, or ensuring your customers feel heard and valued, I bring a unique, multidisciplinary approach to problem-solving.
                                         </p>
 
-                                        <div className="grid grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                                                 <div className="text-3xl font-bold text-white mb-1">100%</div>
                                                 <div className="text-sm text-gray-500">Client Satisfaction</div>
@@ -278,7 +282,7 @@ const App = () => {
                 <section id="contact" className="py-24 px-6 relative">
                     <div className="container mx-auto max-w-4xl text-center">
                         <RevealOnScroll>
-                            <h2 className="text-4xl md:text-6xl font-bold mb-6">Let's build something <br className="hidden md:block" /> extraordinary.</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">Let's build something <br className="hidden md:block" /> extraordinary.</h2>
                         </RevealOnScroll>
 
                         <RevealOnScroll delay={150}>
@@ -288,29 +292,47 @@ const App = () => {
                         </RevealOnScroll>
 
                         <RevealOnScroll delay={300}>
-                            <form className="max-w-md mx-auto space-y-4 text-left relative z-20" onSubmit={(e) => e.preventDefault()}>
+                            <form
+                                name="contact"
+                                method="POST"
+                                data-netlify="true"
+                                netlify-honeypot="bot-field"
+                                className="max-w-md mx-auto space-y-4 text-left relative z-20"
+                            >
+                                <input type="hidden" name="form-name" value="contact" />
+                                <p className="hidden">
+                                    <label>
+                                        Don't fill this out if you're human: <input name="bot-field" />
+                                    </label>
+                                </p>
                                 <div>
                                     <input
+                                        name="name"
                                         type="text"
                                         placeholder="Your Name"
+                                        required
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all"
                                     />
                                 </div>
                                 <div>
                                     <input
+                                        name="email"
                                         type="email"
                                         placeholder="Your Email"
+                                        required
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all"
                                     />
                                 </div>
                                 <div>
                                     <textarea
+                                        name="message"
                                         placeholder="Tell me about your project or needs..."
                                         rows={4}
+                                        required
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all resize-none"
                                     ></textarea>
                                 </div>
-                                <button className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex justify-center items-center gap-2">
+                                <button type="submit" className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex justify-center items-center gap-2">
                                     Send Message <ExternalLink className="w-4 h-4" />
                                 </button>
                             </form>
