@@ -55,6 +55,7 @@ const RevealOnScroll = ({ children, className = "", delay = 0, direction = "up" 
 
 const App = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const whatsappNumber = "2349163460203";
     const whatsappText = "Hi Nnenna, I just saw your portfolio. I'd like to discuss a project. Are you available?";
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
@@ -94,9 +95,34 @@ const App = () => {
                             Let's Talk
                         </a>
                         {/* Mobile Menu Button (Simplified for this build) */}
-                        <button className="md:hidden text-gray-300 hover:text-white">
+                        <button
+                            type="button"
+                            className="md:hidden text-gray-300 hover:text-white"
+                            onClick={() => setMenuOpen((open) => !open)}
+                            aria-expanded={menuOpen}
+                            aria-controls="mobile-nav"
+                        >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                         </button>
+                    </div>
+                    <div
+                        id="mobile-nav"
+                        className={`${menuOpen ? "block" : "hidden"} md:hidden mt-3 rounded-2xl border border-white/10 bg-black/70 backdrop-blur-md`}
+                    >
+                        <div className="flex flex-col px-6 py-4 space-y-3 text-sm font-medium text-gray-300">
+                            <a href="#services" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Expertise</a>
+                            <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">About</a>
+                            <a href="#contact" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Contact</a>
+                            <a
+                                href={whatsappLink}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={() => setMenuOpen(false)}
+                                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-200 transition-colors"
+                            >
+                                Let's Talk
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -137,6 +163,58 @@ const App = () => {
                                 </a>
                             </div>
                         </RevealOnScroll>
+                    </div>
+                </section>
+
+                {/* About Section - Glassmorphism Split */}
+                <section id="about" className="py-24 px-6">
+                    <div className="container mx-auto max-w-6xl">
+                        <div className="rounded-3xl bg-white/[0.02] border border-white/[0.05] p-1 md:p-8 backdrop-blur-lg">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
+
+                                {/* Image/Abstract Graphic representation */}
+                                <RevealOnScroll direction="right">
+                                    <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center group">
+                                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10 transition-all duration-500 group-hover:bg-black/0"></div>
+                                        {/* Abstract shapes representing a portrait */}
+                                        <div className="relative z-0 w-full h-full flex items-center justify-center">
+                                            <div className="w-48 h-48 rounded-full border border-white/20 absolute animate-[spin_10s_linear_infinite]"></div>
+                                            <div className="w-64 h-64 rounded-full border border-dashed border-white/10 absolute animate-[spin_15s_linear_infinite_reverse]"></div>
+                                            <Users className="w-24 h-24 text-gray-500" />
+                                        </div>
+                                        <div className="absolute bottom-6 left-6 z-20 backdrop-blur-md bg-black/40 border border-white/10 p-4 rounded-xl">
+                                            <p className="text-white font-medium">Nnenna Emefo</p>
+                                            <p className="text-xs text-gray-400">Digital Specialist</p>
+                                        </div>
+                                    </div>
+                                </RevealOnScroll>
+
+                                {/* Text Content */}
+                                <RevealOnScroll direction="left" delay={200}>
+                                    <div>
+                                        <h2 className="text-3xl md:text-5xl font-bold mb-6">Redefining the digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">experience.</span></h2>
+                                        <p className="text-gray-400 mb-6 leading-relaxed">
+                                            With a deep understanding of both the administrative backbone and the digital forefront of modern businesses, I help brands and individuals navigate the complex digital landscape.
+                                        </p>
+                                        <p className="text-gray-400 mb-8 leading-relaxed">
+                                            Whether it's setting up your first professional profile, scaling a massive ad campaign, or ensuring your customers feel heard and valued, I bring a unique, multidisciplinary approach to problem-solving.
+                                        </p>
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                                                <div className="text-3xl font-bold text-white mb-1">100%</div>
+                                                <div className="text-sm text-gray-500">Client Satisfaction</div>
+                                            </div>
+                                            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                                                <div className="text-3xl font-bold text-white mb-1">Omni</div>
+                                                <div className="text-sm text-gray-500">Channel Marketing</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </RevealOnScroll>
+
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -225,58 +303,6 @@ const App = () => {
                     </div>
                 </section>
 
-                {/* About Section - Glassmorphism Split */}
-                <section id="about" className="py-24 px-6">
-                    <div className="container mx-auto max-w-6xl">
-                        <div className="rounded-3xl bg-white/[0.02] border border-white/[0.05] p-1 md:p-8 backdrop-blur-lg">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
-
-                                {/* Image/Abstract Graphic representation */}
-                                <RevealOnScroll direction="right">
-                                    <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center group">
-                                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10 transition-all duration-500 group-hover:bg-black/0"></div>
-                                        {/* Abstract shapes representing a portrait */}
-                                        <div className="relative z-0 w-full h-full flex items-center justify-center">
-                                            <div className="w-48 h-48 rounded-full border border-white/20 absolute animate-[spin_10s_linear_infinite]"></div>
-                                            <div className="w-64 h-64 rounded-full border border-dashed border-white/10 absolute animate-[spin_15s_linear_infinite_reverse]"></div>
-                                            <Users className="w-24 h-24 text-gray-500" />
-                                        </div>
-                                        <div className="absolute bottom-6 left-6 z-20 backdrop-blur-md bg-black/40 border border-white/10 p-4 rounded-xl">
-                                            <p className="text-white font-medium">Nnenna Emefo</p>
-                                            <p className="text-xs text-gray-400">Digital Specialist</p>
-                                        </div>
-                                    </div>
-                                </RevealOnScroll>
-
-                                {/* Text Content */}
-                                <RevealOnScroll direction="left" delay={200}>
-                                    <div>
-                                        <h2 className="text-3xl md:text-5xl font-bold mb-6">Redefining the digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">experience.</span></h2>
-                                        <p className="text-gray-400 mb-6 leading-relaxed">
-                                            With a deep understanding of both the administrative backbone and the digital forefront of modern businesses, I help brands and individuals navigate the complex digital landscape.
-                                        </p>
-                                        <p className="text-gray-400 mb-8 leading-relaxed">
-                                            Whether it's setting up your first professional profile, scaling a massive ad campaign, or ensuring your customers feel heard and valued, I bring a unique, multidisciplinary approach to problem-solving.
-                                        </p>
-
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                                                <div className="text-3xl font-bold text-white mb-1">100%</div>
-                                                <div className="text-sm text-gray-500">Client Satisfaction</div>
-                                            </div>
-                                            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                                                <div className="text-3xl font-bold text-white mb-1">Omni</div>
-                                                <div className="text-sm text-gray-500">Channel Marketing</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </RevealOnScroll>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Contact Section */}
                 <section id="contact" className="py-24 px-6 relative">
                     <div className="container mx-auto max-w-4xl text-center">
@@ -331,9 +357,9 @@ const App = () => {
                                         className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all resize-none"
                                     ></textarea>
                                 </div>
-                                <button type="submit" className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex justify-center items-center gap-2">
+                                <a href={whatsappLink} target="_blank" rel="noreferrer" className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex justify-center items-center gap-2">
                                     Send Message <ExternalLink className="w-4 h-4" />
-                                </button>
+                                </a>
                             </form>
                         </RevealOnScroll>
                     </div>
